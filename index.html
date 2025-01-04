@@ -15,17 +15,20 @@
             <div class="row justify-content-center mb-5">
                 <div class="col-xl-4">
                     <h2 class="text-center mb-3">Pesos CLP</h2>
-                    <input type="email" class="form-control mb-3 text-center" id="monto-clp-input" placeholder="Ingrese el monto en CLP">
+                    <input type="text" class="form-control mb-3 text-center" id="monto-clp-input" placeholder="Ingrese el monto en CLP">
                     
                     <div class="mb-3">
                         <p class="mb-2 text-center">Moneda a convertir:</p>
                         <select class="form-select text-center" id="indicadores-select">
-                            <option selected>Seleccione moneda</option>
+                            <option value="0" selected>Seleccione moneda</option>
                             <!-- indicadores -->
                         </select>
                     </div>
                     <div class="d-grid gap-3">
-                        <button class="btn btn-info mb-3 text-light">Buscar</button>
+                        <button class="btn btn-info mb-3 text-light" id="btn-buscar">Buscar</button>
+                    </div>
+                    <div class="mb-3">
+                        <h4 class="text-center"><span class="resultado">...</span></h4>
                     </div>
                 </div>
             </div>

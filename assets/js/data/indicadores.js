@@ -20,28 +20,8 @@ const indicadores = [
         nombre: 'Euro'
     }, 
     {
-        codigo: 'ipc',
-        nombre: 'Indice de Precios al Consumidor (IPC)'
-    }, 
-    {
         codigo: 'utm',
         nombre: 'Unidad Tributaria Mensual (UTM)'
-    }, 
-    {
-        codigo: 'imacec',
-        nombre: 'Imacec'
-    }, 
-    {
-        codigo: 'tpm',
-        nombre: 'Tasa Política Monetaria (TPM)'
-    }, 
-    {
-        codigo: 'libra_cobre',
-        nombre: 'Libra de Cobre'
-    }, 
-    {
-        codigo: 'tasa_desempleo',
-        nombre: 'Tasa de desempleo'
     }, 
     {
         codigo: 'bitcoin',

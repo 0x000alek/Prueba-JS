@@ -4,6 +4,7 @@ const inputMontoClp = document.querySelector('#monto-clp-input')
 const optionSelectIndicador = document.querySelector('#indicadores-select')
 const btnBuscar = document.querySelector('#btn-buscar')
 const spanResultado = document.querySelector('.resultado')
+const canvasChatValoresIndicador = document.querySelector('#indicador-chart')
 
 inputMontoClp.addEventListener('keydown', (event) => {
     let ASCIICode = (event.which) ? event.which : event.keyCode
@@ -45,6 +46,8 @@ const buscarValoresIndicador = async (montoClp, tipoIndicador) => {
 
         let valorClpIndicador = data.serie[0].valor
         spanResultado.innerHTML = `Resultado: ${convertirClp(montoClp, valorClpIndicador)}`
+
+        renderGraficoUltimosValoresIndicador(data.serie)
     } catch (e) {
         alert(e.message)
     }
@@ -52,6 +55,33 @@ const buscarValoresIndicador = async (montoClp, tipoIndicador) => {
 
 const convertirClp = (montoClp, valorClpIndicador) => {
     return (montoClp/valorClpIndicador).toFixed(2)
+}
+
+const renderGraficoUltimosValoresIndicador = (dataIndicador) => {
+    const labels = dataIndicador.map((element) => {
+        return new Date(element.fecha).toLocaleDateString('es-CL')
+    }).slice(0, 10).reverse()
+    const valores = dataIndicador.map((element) => {
+        return element.valor
+    }).slice(0, 10).reverse()
+
+    const data = {
+        labels: labels,
+        datasets: [{
+            label: 'My First Dataset',
+            data: valores,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    }
+
+    const config = {
+        type: 'line',
+        data: data,
+    }
+
+    new Chart(canvasChatValoresIndicador, config)
 }
 
 cargarIndicadores(indicadores)

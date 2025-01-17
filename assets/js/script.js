@@ -6,6 +6,8 @@ const btnBuscar = document.querySelector('#btn-buscar')
 const spanResultado = document.querySelector('.resultado')
 const canvasChatValoresIndicador = document.querySelector('#indicador-chart')
 
+var chartHistorialIndicadores = null
+
 inputMontoClp.addEventListener('keydown', (event) => {
     let ASCIICode = (event.which) ? event.which : event.keyCode
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57)) {
@@ -45,7 +47,8 @@ const buscarValoresIndicador = async (montoClp, tipoIndicador) => {
         let data =await res.json()
 
         let valorClpIndicador = data.serie[0].valor
-        spanResultado.innerHTML = `Resultado: ${convertirClp(montoClp, valorClpIndicador)}`
+        let monedaIndicador = indicadores.find(e => e.codigo == tipoIndicador).moneda
+        spanResultado.innerHTML = `Resultado: ${convertirClp(montoClp, valorClpIndicador)} ${monedaIndicador}`
 
         renderGraficoUltimosValoresIndicador(data.serie)
     } catch (e) {
@@ -58,6 +61,8 @@ const convertirClp = (montoClp, valorClpIndicador) => {
 }
 
 const renderGraficoUltimosValoresIndicador = (dataIndicador) => {
+    let selectedIndicadorText = optionSelectIndicador.options[optionSelectIndicador.selectedIndex].text
+
     const labels = dataIndicador.map((element) => {
         return new Date(element.fecha).toLocaleDateString('es-CL')
     }).slice(0, 10).reverse()
@@ -68,7 +73,7 @@ const renderGraficoUltimosValoresIndicador = (dataIndicador) => {
     const data = {
         labels: labels,
         datasets: [{
-            label: 'My First Dataset',
+            label: `Valor ${selectedIndicadorText}`,
             data: valores,
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
@@ -79,9 +84,21 @@ const renderGraficoUltimosValoresIndicador = (dataIndicador) => {
     const config = {
         type: 'line',
         data: data,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: `Historial Últimos 10 días ${selectedIndicadorText}`
+                }
+            }
+        }
     }
 
-    new Chart(canvasChatValoresIndicador, config)
+    if (chartHistorialIndicadores) {
+        chartHistorialIndicadores.destroy()
+    }
+
+    chartHistorialIndicadores = new Chart(canvasChatValoresIndicador, config)
 }
 
 cargarIndicadores(indicadores)

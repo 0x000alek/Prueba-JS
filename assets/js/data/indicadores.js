@@ -1,31 +1,33 @@
 const indicadores = [
     {
         codigo: 'uf',
-        nombre: 'Unidad de fomento (UF)'
+        nombre: 'Unidad de fomento (UF)',
+        moneda: 'UF'
     },
     {
         codigo: 'ivp',
-        nombre: 'Indice de valor promedio (IVP)'
+        nombre: 'Indice de valor promedio (IVP)',
+        moneda: 'IVP'
     }, 
     {
         codigo: 'dolar',
-        nombre: 'Dólar observado'
+        nombre: 'Dólar observado',
+        moneda: 'USD'
     }, 
     {
         codigo: 'dolar_intercambio',
-        nombre: 'Dólar acuerdo'
+        nombre: 'Dólar acuerdo',
+        moneda: 'USD'
     }, 
     {
         codigo: 'euro',
-        nombre: 'Euro'
+        nombre: 'Euro',
+        moneda: 'Euro'
     }, 
     {
         codigo: 'utm',
-        nombre: 'Unidad Tributaria Mensual (UTM)'
-    }, 
-    {
-        codigo: 'bitcoin',
-        nombre: 'Bitcoins'
+        nombre: 'Unidad Tributaria Mensual (UTM)',
+        moneda: 'UTM'
     }
 ]
 

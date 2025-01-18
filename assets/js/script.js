@@ -57,7 +57,7 @@ const buscarValoresIndicador = async (montoClp, tipoIndicador) => {
 }
 
 const convertirClp = (montoClp, valorClpIndicador) => {
-    return (montoClp/valorClpIndicador).toFixed(2)
+    return new Intl.NumberFormat('es-CL').format((montoClp/valorClpIndicador).toFixed(2))
 }
 
 const renderGraficoUltimosValoresIndicador = (dataIndicador) => {

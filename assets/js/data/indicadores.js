@@ -22,7 +22,7 @@ const indicadores = [
     {
         codigo: 'euro',
         nombre: 'Euro',
-        moneda: 'Euro'
+        moneda: 'EUR'
     }, 
     {
         codigo: 'utm',
